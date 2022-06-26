@@ -139,12 +139,16 @@ app.layout = html.Div(children=[
     html.Div(children='Primeiro AP'),
     dcc.Slider(1, 108, 1,
                value=21,
-               id='compare1'
+               id='compare1',
+               marks=None,
+               tooltip={"placement": "bottom", "always_visible": True},
                ),
     html.Div(children='Segundo AP'),
     dcc.Slider(1, 108, 1,
                value=13,
-               id='compare2'
+               id='compare2',
+               marks=None,
+               tooltip={"placement": "bottom", "always_visible": True},
                ),
     dcc.Graph(
         id='grafico_compara',
