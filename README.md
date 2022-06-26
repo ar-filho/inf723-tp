@@ -71,7 +71,7 @@ Python 3.9.2
 ![Caracterização Atual](docs/caracterizacao_atual.jpg)
 
 ## Estratégias Utilizadas
-O dashboard foi construído para poder visualizar os dados que o compõem, para entender a semântica das características e para poder analisar melhor os dados. Foram utilizadas as seguintes técnicas: ampliação e redução, panning, datalhes sob demanda, remoção de variáveis, visualização ordenada, comparação com uso de filtros, redimencionamento de escala, e reprocessamento da base de dados para realizar uma re-expressão.
+O dashboard foi construído para poder visualizar os dados que o compõem, para entender a semântica das características e para poder analisar melhor os dados. Foram utilizadas as seguintes técnicas: ampliação e redução, panning, datalhes sob demanda, remoção de variáveis, visualização ordenada, comparação com uso de filtros, redimensionamento de escala, e reprocessamento da base de dados para realizar uma re-expressão.
 
 Todos os gráficos podem ser ampliados e reduzidos selecionando com o mouse, ou clicando duas vezes na visualização. A seleção para zoom pode ser em uma direção horizontal, uma direção vertical, em regiões retangulares ou circulares.
 O panning,  deslizar a imagem, está disponível em todas as visualizações, portante pode-se fazer isso clicando e arrastando os eixos x e y.
