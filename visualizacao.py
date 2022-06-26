@@ -105,7 +105,19 @@ app.layout = html.Div(children=[
     dcc.Dropdown(
         client_colunas,
         value='quant_req',
-        id='client-coluna'),
+        id='clientcoluna'),
+    html.H4(children='Selecione o número de bins:'),
+    dcc.Slider(10, 1000, 10,
+               value=10,
+               id='clientbins',
+               marks=None,
+               tooltip={"placement": "bottom", "always_visible": True},
+               ),
+    html.H4(children='Usar escala logaritmica:'),
+    dcc.Checklist(
+        ['Log Y'],
+        value=['Log Y'],
+        id='clientlogy'),
     dcc.Graph(
         id='grafico_clients',
         figure=clients
@@ -116,7 +128,19 @@ app.layout = html.Div(children=[
     dcc.Dropdown(
         radio_colunas,
         value='quant_req',
-        id='radio-coluna'),
+        id='radiocoluna'),
+    html.H4(children='Selecione o número de bins:'),
+    dcc.Slider(10, 1000, 10,
+               value=10,
+               id='radiobins',
+               marks=None,
+               tooltip={"placement": "bottom", "always_visible": True},
+               ),
+    html.H4(children='Usar escala logaritmica:'),
+    dcc.Checklist(
+        ['Log Y'],
+        value=['Log Y'],
+        id='radiology'),
     dcc.Graph(
         id='grafico_radios',
         figure=radios
@@ -124,9 +148,11 @@ app.layout = html.Div(children=[
 
 
     html.H3(children='Top Pontos de Acessos em Quantidade de Requisições'),
-    dcc.Slider(2, 50, 1,
+    dcc.Slider(2, 108, 1,
                value=10,
-               id='top_ap_slider'
+               id='top_ap_slider',
+               marks=None,
+               tooltip={"placement": "bottom", "always_visible": True},
                ),
     dcc.Graph(
         id='grafico_top_ap',
@@ -178,24 +204,57 @@ def update_output(compare1, compare2):
 
 @app.callback(
     Output('grafico_clients', 'figure'),
-    Input('client-coluna', 'value')
+    Input('clientcoluna', 'value'),
+    Input('clientlogy', 'value'),
+    Input('clientbins', 'value')
 )
-def update_output(value):
-    if value == "quant_req":
-        clients = px.histogram(df_client, x="quant_req", log_y=True)
+def update_output(clientcoluna, clientlogy, clientbins):
+    if clientbins == 10:
+        if clientcoluna == "quant_req":
+            clients = px.histogram(df_client, x="quant_req",
+                                  log_y=(False if not clientlogy else True))
+        else:
+            clients = px.histogram(df_client, x=clientcoluna,
+                                  log_y=(False if not clientlogy else True))
     else:
-        clients = px.histogram(df_client, x=value, log_y=True)
+        if clientcoluna == "quant_req":
+            clients = px.histogram(df_client, x="quant_req",
+                                  log_y=(False if not clientlogy else True),
+                                  nbins=clientbins)
+        else:
+            clients = px.histogram(df_client, x=clientcoluna,
+                                  log_y=(False if not clientlogy else True),
+                                  nbins=clientbins)
+    # return radios
+    # if value == "quant_req":
+    #     clients = px.histogram(df_client, x="quant_req", log_y=True)
+    # else:
+    #     clients = px.histogram(df_client, x=value, log_y=True)
     return clients
 
 @app.callback(
     Output('grafico_radios', 'figure'),
-    Input('radio-coluna', 'value')
+    Input('radiocoluna', 'value'),
+    Input('radiology', 'value'),
+    Input('radiobins', 'value')
 )
-def update_output(value):
-    if value == "quant_req":
-        radios = px.histogram(df_ap, x="quant_req", log_y=True)
+def update_output(radiocoluna, radiology, radiobins):
+    if radiobins == 10:
+        if radiocoluna == "quant_req":
+            radios = px.histogram(df_ap, x="quant_req",
+                                  log_y=(False if not radiology else True))
+        else:
+            radios = px.histogram(df_ap, x=radiocoluna,
+                                  log_y=(False if not radiology else True))
     else:
-        radios = px.histogram(df_ap, x=value, log_y=True)
+        if radiocoluna == "quant_req":
+            radios = px.histogram(df_ap, x="quant_req",
+                                  log_y=(False if not radiology else True),
+                                  nbins=radiobins)
+        else:
+            radios = px.histogram(df_ap, x=radiocoluna,
+                                  log_y=(False if not radiology else True),
+                                  nbins=radiobins)
     return radios
 
 @app.callback(
