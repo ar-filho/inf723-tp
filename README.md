@@ -1,12 +1,11 @@
-# inf723-tp
-Departamento de Informática - Universidade Federal de Viçosa
-Visualização de Dados 2022/01 - INF 723
-Profa. Sabrina de Azevedo Silveira
+### Departamento de Informática - Universidade Federal de Viçosa
+##### Visualização de Dados 2022/01 - INF 723
+##### Profa. Sabrina de Azevedo Silveira
 
-Desenvolver um projeto relacionado ao seu trabalho de pós-graduação. Este projeto deve realizar uma proposta de representação visual interativa aplicada ao trabalho de mestrado/doutorado.
+###### Desenvolver um projeto relacionado ao seu trabalho de pós-graduação. Este projeto deve realizar uma proposta de representação visual interativa aplicada ao trabalho de mestrado/doutorado.
 
 
-# Base de Dados
+## Base de Dados
 4 meses de logs de autorizações da rede sem fio
 14,2m requisições
 dispositivos (36k dispositivos) - sem localização exata
@@ -14,6 +13,7 @@ ponto de acesso (108 aps)
 timestamp
 método de autenticação utilizado (dado extremamente incompleto)
 
+## Caracterização Anterior
 img caracterização anterior
 
 # Base de Dados Reprocessada
